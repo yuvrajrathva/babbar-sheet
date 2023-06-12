@@ -1,0 +1,1 @@
+{"name":"Local: Remove loop in Linked List","url":"c:\\Users\\Dell\\OneDrive\\Desktop\\DSA\\Babbar\\Remove loop in Linked List.cpp","tests":[{"id":1686556729005,"input":"3\n1 3 4 \n2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Dell\\OneDrive\\Desktop\\DSA\\Babbar\\Remove loop in Linked List.cpp","group":"local","local":true}
