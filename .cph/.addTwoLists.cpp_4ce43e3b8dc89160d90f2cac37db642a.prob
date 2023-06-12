@@ -1,0 +1,1 @@
+{"name":"Local: addTwoLists","url":"c:\\Users\\Dell\\OneDrive\\Desktop\\DSA\\Babbar\\addTwoLists.cpp","tests":[{"id":1686566983391,"input":"5\n7 7 0 3 2\n5\n2 9 6 6 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Dell\\OneDrive\\Desktop\\DSA\\Babbar\\addTwoLists.cpp","group":"local","local":true}
