@@ -65,7 +65,6 @@ void mergeSort(int arr[], int l, int h)
 class Solution
 {
 public:
-    // Function to sort the given linked list using Merge Sort.
     Node *mergeSort(Node *head)
     {
         struct Node* temp = head;
@@ -79,7 +78,6 @@ public:
     }
 };
 
-//{ Driver Code Starts.
 
 void printList(Node *node)
 {
