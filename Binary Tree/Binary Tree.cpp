@@ -3,14 +3,14 @@ using namespace std;
 
 struct Node
 {
-    struct Node *lchild;
+    struct Node *left;
     int data;
-    struct Node *rchild;
+    struct Node *right;
     Node(int value)
     {
         data = value;
-        lchild = NULL;
-        rchild = NULL;
+        left = NULL;
+        right = NULL;
     }
 };
 
@@ -25,24 +25,24 @@ void insert(Node *root, int key)
         Node *curr = q.front();
         q.pop();
 
-        if (curr->lchild == NULL)
+        if (curr->left == NULL)
         {
-            curr->lchild = new Node(key);
+            curr->left = new Node(key);
             break;
         }
         else
         {
-            q.push(curr->lchild);
+            q.push(curr->left);
         }
 
-        if (curr->rchild == NULL)
+        if (curr->right == NULL)
         {
-            curr->rchild = new Node(key);
+            curr->right = new Node(key);
             break;
         }
         else
         {
-            q.push(curr->rchild);
+            q.push(curr->right);
         }
     }
 }

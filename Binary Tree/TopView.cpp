@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TreeNode
+struct Node
 {
-    struct TreeNode *left;
+    struct Node *left;
     int data;
-    struct TreeNode *right;
-    TreeNode(int value)
+    struct Node *right;
+    Node(int value)
     {
         data = value;
         left = NULL;
@@ -14,20 +14,20 @@ struct TreeNode
     }
 };
 
-void insert(TreeNode *root, int key)
+void insert(Node *root, int key)
 {
-    queue<TreeNode *> q;
+    queue<Node *> q;
     q.push(root);
 
     // Do level order traversal until we find an empty spot
     while (!q.empty())
     {
-        TreeNode *curr = q.front();
+        Node *curr = q.front();
         q.pop();
 
         if (curr->left == NULL)
         {
-            curr->left = new TreeNode(key);
+            curr->left = new Node(key);
             break;
         }
         else
@@ -37,7 +37,7 @@ void insert(TreeNode *root, int key)
 
         if (curr->right == NULL)
         {
-            curr->right = new TreeNode(key);
+            curr->right = new Node(key);
             break;
         }
         else
@@ -47,22 +47,22 @@ void insert(TreeNode *root, int key)
     }
 }
 
-void levelOrder(TreeNode *node)
+void levelOrder(Node *node)
 {
     if (node == NULL)
     {
         return;
     }
 
-    queue<TreeNode *> q;
+    queue<Node *> q;
     q.push(node);
 
     while (!q.empty())
     {
-        TreeNode *temp = q.front();
+        Node *temp = q.front();
         q.pop();
 
-        cout<<(temp->data)<<" ";
+        cout << (temp->data) << " ";
 
         if (temp->left != NULL)
         {
@@ -78,19 +78,36 @@ void levelOrder(TreeNode *node)
 class Solution
 {
 public:
-    TreeNode *invertTree(TreeNode *root)
+    vector<int> topView(Node *root)
     {
-        if(root == NULL){
-            return root;
+        vector<int> output;
+        if (root == NULL)
+        {
+            return output;
         }
-        
-        invertTree(root->left);
-        invertTree(root->right);
-        TreeNode* temp = root->left;
-        root->left = root->right;
-        root->right = temp;
 
-        return root;
+        queue<Node *> q;
+        map<int, int> m;
+        int n = 0;
+        q.push(root);
+
+        while (!q.empty())
+        {
+            Node *temp = q.front();
+            m.insert(n, temp->data);
+            q.pop();
+
+            if (temp->left)
+            {
+                q.push(temp->left);
+                n--;
+            }
+            if (temp->right)
+            {
+                q.push(temp->right);
+                n++;    
+            }
+        }
     }
 };
 
@@ -98,13 +115,13 @@ int main()
 {
     int n, input;
     cin >> n;
-    struct TreeNode *root = NULL;
+    struct Node *root = NULL;
     for (int i = 0; i < n; i++)
     {
         cin >> input;
         if (i == 0)
         {
-            root = new TreeNode(input);
+            root = new Node(input);
         }
         else
         {
@@ -112,11 +129,12 @@ int main()
         }
     }
 
-    levelOrder(root);
-    cout<<endl;
     Solution sol;
-    TreeNode* ans = sol.invertTree(root);
-    levelOrder(ans);
+    vector<int> ans = sol.topView(root);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
 
     return 0;
 }
