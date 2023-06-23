@@ -80,68 +80,62 @@ class Solution
 public:
     vector<int> topView(Node *root)
     {
-        vector<int> output;
-        if (root == NULL)
-        {
-            return output;
-        }
-
         queue<pair<Node *, int>> q;
         pair<Node *, int> pr;
-        map<int, Node *> mp;
+        map<int, int> mp;
+        vector<int> v;
+
         int hd = 0;
         pr.first = root;
         pr.second = hd;
-        q.push(pr);
-        mp[hd] = q.front().first;
 
+        q.push(pr);
+
+        Node *front;
         while (!q.empty())
         {
-            Node *temp = q.front().first;
+            front = q.front().first;
             hd = q.front().second;
+
             q.pop();
 
-            if (temp->left != NULL)
+            if (mp.find(hd) == mp.end())
             {
-                pr.first = temp->left;
+                mp[hd] = front->data;
+            }
+
+            if (front->left)
+            {
+                pr.first = front->left;
                 pr.second = hd - 1;
                 q.push(pr);
-                if (mp.find(hd - 1) == mp.end())
-                {
-
-                    mp[hd - 1] = temp->left;
-                }
             }
-            if (temp->right != NULL)
+
+            if (front->right)
             {
-                pr.first = temp->right;
+                pr.first = front->right;
                 pr.second = hd + 1;
                 q.push(pr);
-                if (mp.find(hd + 1) == mp.end())
-                {
-                    mp[hd + 1] = temp->right;
-                }
             }
         }
 
         for (auto &e : mp)
         {
-            output.push_back(e.second->data);
+            v.push_back(e.second);
         }
 
-        return output;
+        return v; // Your code here
     }
 };
 
 int main()
 {
-    int n;
+    int n, input;
     cin >> n;
-    int input;
     struct Node *root = NULL;
     for (int i = 0; i < n; i++)
     {
-        cin>>input;
+        cin >> input;
         if (i == 0)
         {
             root = new Node(input);
